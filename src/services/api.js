@@ -107,6 +107,19 @@ export const api = {
     } catch (e) {
       return { success: false, message: 'Could not connect to database inspector.' };
     }
+  },
+
+  async executeCode({ language, code, input }) {
+    try {
+      const res = await fetch(`${API_BASE_URL}/compiler/execute`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ language, code, input })
+      });
+      return await res.json();
+    } catch (e) {
+      return { success: false, output: `Network error connecting to compiler: ${e.message}` };
+    }
   }
 };
 

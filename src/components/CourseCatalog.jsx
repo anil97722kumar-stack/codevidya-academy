@@ -152,30 +152,45 @@ export default function CourseCatalog({
                       </span>
                     </div>
 
-                    {/* What's Free vs Paid Breakdown */}
+                    {/* What's Free vs Paid Breakdown (Clickable shortcuts) */}
                     <div className="space-y-1.5 mt-3 text-xs">
-                      <div className="flex items-center justify-between py-1 px-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                        <span className="flex items-center gap-1.5 text-emerald-300 font-medium">
-                          <PlayCircle className="w-3.5 h-3.5" />
+                      <button
+                        type="button"
+                        onClick={() => onSelectCourse(course.id, 'classes')}
+                        className="w-full flex items-center justify-between py-1.5 px-2.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 text-left transition-colors cursor-pointer group/row"
+                        title="Click to watch free video lectures"
+                      >
+                        <span className="flex items-center gap-1.5 text-emerald-300 font-medium group-hover/row:text-emerald-200">
+                          <PlayCircle className="w-3.5 h-3.5 text-emerald-400" />
                           Video Lectures ({course.lectures.length} Classes)
                         </span>
                         <span className="font-extrabold text-emerald-400 uppercase tracking-wider text-[11px]">
                           100% FREE
                         </span>
-                      </div>
+                      </button>
 
-                      <div className="flex items-center justify-between py-1 px-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-                        <span className="flex items-center gap-1.5 text-cyan-300 font-medium">
-                          <FileText className="w-3.5 h-3.5" />
+                      <button
+                        type="button"
+                        onClick={() => onSelectCourse(course.id, 'notes')}
+                        className="w-full flex items-center justify-between py-1.5 px-2.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 text-left transition-colors cursor-pointer group/row"
+                        title="Click to read free revision notes"
+                      >
+                        <span className="flex items-center gap-1.5 text-cyan-300 font-medium group-hover/row:text-cyan-200">
+                          <FileText className="w-3.5 h-3.5 text-cyan-400" />
                           Handcrafted Revision Notes
                         </span>
                         <span className="font-extrabold text-cyan-400 uppercase tracking-wider text-[11px]">
-                          FREE
+                          FREE READ
                         </span>
-                      </div>
+                      </button>
 
-                      <div className="flex items-center justify-between py-1 px-2 rounded-lg bg-amber-500/10 border border-amber-500/25">
-                        <span className="flex items-center gap-1.5 text-amber-300 font-medium truncate">
+                      <button
+                        type="button"
+                        onClick={() => onSelectCourse(course.id, 'sheet')}
+                        className="w-full flex items-center justify-between py-1.5 px-2.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/25 text-left transition-colors cursor-pointer group/row"
+                        title="Click to view practice questions with code solutions"
+                      >
+                        <span className="flex items-center gap-1.5 text-amber-300 font-medium truncate group-hover/row:text-amber-200">
                           <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                           {course.practiceSheet.totalQuestions}+ Questions + Solutions
                         </span>
@@ -188,28 +203,49 @@ export default function CourseCatalog({
                             `₹${course.pricing.sheetPrice}`
                           )}
                         </span>
-                      </div>
+                      </button>
 
-                      <div className="flex items-center justify-between py-1 px-2 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
-                        <span className="flex items-center gap-1.5 text-indigo-300 font-medium">
-                          <Award className="w-3.5 h-3.5" />
+                      <button
+                        type="button"
+                        onClick={() => onSelectCourse(course.id, 'certificate')}
+                        className="w-full flex items-center justify-between py-1.5 px-2.5 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 text-left transition-colors cursor-pointer group/row"
+                        title="Click to take exam and claim certificate"
+                      >
+                        <span className="flex items-center gap-1.5 text-indigo-300 font-medium group-hover/row:text-indigo-200">
+                          <Award className="w-3.5 h-3.5 text-indigo-400" />
                           Official Industry Certificate
                         </span>
                         <span className="font-bold text-indigo-400 text-[11px]">
-                          INCLUDED
+                          EXAM
                         </span>
-                      </div>
+                      </button>
                     </div>
                   </div>
 
                   {/* Card Bottom CTA */}
-                  <div className="mt-5 pt-3 border-t border-slate-800">
+                  <div className="mt-5 pt-3 border-t border-slate-800 flex gap-2">
                     <button
                       onClick={() => onSelectCourse(course.id, 'classes')}
-                      className="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-md shadow-indigo-600/20 group/btn"
+                      className="flex-1 py-2.5 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all shadow-md shadow-indigo-600/20 group/btn cursor-pointer"
                     >
-                      <span>Open Course (Free Classes & Notes)</span>
+                      <span>Open Course</span>
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </button>
+                    <button
+                      onClick={() => onSelectCourse(course.id, 'notes')}
+                      className="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-cyan-600/20 border border-slate-700 hover:border-cyan-500/40 text-cyan-300 text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer"
+                      title="Direct to Notes"
+                    >
+                      <FileText className="w-3.5 h-3.5 text-cyan-400" />
+                      <span>Notes</span>
+                    </button>
+                    <button
+                      onClick={() => onSelectCourse(course.id, 'sheet')}
+                      className="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-amber-600/20 border border-slate-700 hover:border-amber-500/40 text-amber-300 text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer"
+                      title="Direct to Practice Sheets"
+                    >
+                      <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                      <span>Sheets</span>
                     </button>
                   </div>
                 </div>

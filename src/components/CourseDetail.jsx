@@ -31,9 +31,14 @@ export default function CourseDetail({
   onOpenCertificate,
   completedLectures,
   onToggleLectureComplete,
-  onOpenPlayground
+  onOpenPlayground,
+  initialTab = 'classes'
 }) {
-  const [activeTab, setActiveTab] = useState('classes'); // 'classes' | 'notes' | 'sheet' | 'certificate'
+  const [activeTab, setActiveTab] = useState(initialTab || 'classes'); // 'classes' | 'notes' | 'sheet' | 'certificate'
+  
+  // Custom uploaded PDF state for notes
+  const [customPdfUrl, setCustomPdfUrl] = useState(null);
+  const [customPdfName, setCustomPdfName] = useState('');
   
   // Classes state
   const [activeLectureIndex, setActiveLectureIndex] = useState(0);
@@ -423,6 +428,35 @@ export default function CourseDetail({
                 </div>
 
                 <div className="flex items-center gap-2">
+                  {/* Upload Custom PDF Notes */}
+                  <label className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-600/20 hover:bg-cyan-600/30 text-xs font-medium text-cyan-300 border border-cyan-500/40 transition-colors cursor-pointer" title="Upload your own PDF note to read directly here">
+                    <Download className="w-3.5 h-3.5 rotate-180" />
+                    <span>Upload PDF</span>
+                    <input
+                      type="file"
+                      accept=".pdf,application/pdf"
+                      className="hidden"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          const url = URL.createObjectURL(file);
+                          setCustomPdfUrl(url);
+                          setCustomPdfName(file.name);
+                        }
+                      }}
+                    />
+                  </label>
+
+                  {customPdfUrl && (
+                    <button
+                      onClick={() => setCustomPdfUrl(null)}
+                      className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-rose-900/40 text-xs text-rose-400 border border-slate-700 transition-colors"
+                      title="Clear uploaded PDF"
+                    >
+                      Close PDF
+                    </button>
+                  )}
+
                   <button
                     onClick={() => {
                       const printWindow = window.open('', '', 'width=800,height=600');
@@ -449,15 +483,35 @@ export default function CourseDetail({
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300 border border-slate-700 transition-colors"
                   >
                     <Download className="w-3.5 h-3.5" />
-                    Download / Print
+                    Print
                   </button>
                 </div>
               </div>
 
-              {/* Formatted Markdown Content */}
-              <div className="prose prose-invert max-w-none text-slate-300 text-sm leading-relaxed whitespace-pre-wrap font-sans">
-                {activeNote.content}
-              </div>
+              {/* PDF Document Viewer if PDF is loaded, otherwise Markdown Content */}
+              {customPdfUrl ? (
+                <div className="space-y-3">
+                  <div className="p-3 bg-cyan-950/30 border border-cyan-500/30 rounded-xl flex items-center justify-between text-xs text-cyan-300">
+                    <span className="font-semibold">📄 Viewing Custom PDF: {customPdfName}</span>
+                    <a
+                      href={customPdfUrl}
+                      download={customPdfName || "notes.pdf"}
+                      className="hover:underline flex items-center gap-1 font-bold"
+                    >
+                      <Download className="w-3.5 h-3.5" /> Save File
+                    </a>
+                  </div>
+                  <iframe
+                    src={customPdfUrl}
+                    title="PDF Notes Viewer"
+                    className="w-full h-[650px] rounded-xl border border-slate-800 bg-slate-950"
+                  />
+                </div>
+              ) : (
+                <div className="prose prose-invert max-w-none text-slate-300 text-sm leading-relaxed whitespace-pre-wrap font-sans">
+                  {activeNote.content}
+                </div>
+              )}
 
               <div className="mt-8 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
                 <span>Want hands-on code practice for these topics?</span>

@@ -115,9 +115,12 @@ function App() {
     localStorage.setItem('cv_completed_lectures', JSON.stringify(completedLectures));
   }, [completedLectures]);
 
+  const [selectedCourseTab, setSelectedCourseTab] = useState('classes');
+
   // Handlers
-  const handleSelectCourse = (courseId) => {
+  const handleSelectCourse = (courseId, tab = 'classes') => {
     setSelectedCourseId(courseId);
+    setSelectedCourseTab(tab);
     setActiveView(courseId);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -199,7 +202,16 @@ function App() {
         earnedCertificates={earnedCertificates}
         onOpenVerifier={() => setIsVerifierOpen(true)}
         onOpenDashboard={() => setIsDashboardOpen(true)}
-        onOpenDatabase={() => setIsDbModalOpen(true)}
+        onFilterMode={(mode) => {
+          if (activeView !== 'home') {
+            setActiveView('home');
+            setSelectedCourseId(null);
+          }
+          setTimeout(() => {
+            const el = document.getElementById('courses-section');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 50);
+        }}
         onOpenChat={() => setIsChatOpen(true)}
         currentUser={currentUser}
         onSignOut={handleSignOut}
@@ -214,7 +226,7 @@ function App() {
         {activeView === 'home' || !selectedCourse ? (
           <>
             <Hero
-              onExploreCourses={() => {
+              onExploreCourses={(mode) => {
                 const el = document.getElementById('courses-section');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
@@ -231,6 +243,7 @@ function App() {
         ) : (
           <CourseDetail
             course={selectedCourse}
+            initialTab={selectedCourseTab}
             onBack={() => {
               setActiveView('home');
               setSelectedCourseId(null);

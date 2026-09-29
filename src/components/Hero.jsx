@@ -42,12 +42,15 @@ export default function Hero({ onExploreCourses, onOpenVerifier }) {
             Full CS Curriculum (DSA, OS, DBMS, Web Dev, AI) with <strong className="text-white">Free Video Lectures</strong> & <strong className="text-white">Free Revision Notes</strong>. Master coding interviews with our <strong className="text-amber-400">Premium Curated Practice Sheets</strong> containing complete multi-language code solutions & get <strong className="text-sky-400">Industry-Verified Certificates</strong>!
           </p>
 
-          {/* 4 Pillars Card Row */}
+          {/* 4 Pillars Card Row (Interactive) */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 mt-8 max-w-4xl mx-auto">
             
             {/* Pillar 1: Free Classes */}
-            <div className="bg-slate-900/80 backdrop-blur border border-emerald-500/30 rounded-xl p-3.5 text-left relative overflow-hidden group hover:border-emerald-500/60 transition-all">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2">
+            <button
+              onClick={() => onExploreCourses && onExploreCourses('classes')}
+              className="bg-slate-900/80 backdrop-blur border border-emerald-500/30 rounded-xl p-3.5 text-left relative overflow-hidden group hover:border-emerald-500/80 hover:bg-slate-900 transition-all hover:scale-105 cursor-pointer shadow-md"
+            >
+              <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <PlayCircle className="w-4 h-4" />
               </div>
               <div className="flex items-center gap-1.5 mb-1">
@@ -57,11 +60,14 @@ export default function Hero({ onExploreCourses, onOpenVerifier }) {
                 </span>
               </div>
               <p className="text-xs text-slate-400">Structured HD lectures from top engineers.</p>
-            </div>
+            </button>
 
             {/* Pillar 2: Free Notes */}
-            <div className="bg-slate-900/80 backdrop-blur border border-cyan-500/30 rounded-xl p-3.5 text-left relative overflow-hidden group hover:border-cyan-500/60 transition-all">
-              <div className="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center mb-2">
+            <button
+              onClick={() => onExploreCourses && onExploreCourses('notes')}
+              className="bg-slate-900/80 backdrop-blur border border-cyan-500/30 rounded-xl p-3.5 text-left relative overflow-hidden group hover:border-cyan-500/80 hover:bg-slate-900 transition-all hover:scale-105 cursor-pointer shadow-md"
+            >
+              <div className="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <FileText className="w-4 h-4" />
               </div>
               <div className="flex items-center gap-1.5 mb-1">
@@ -71,11 +77,14 @@ export default function Hero({ onExploreCourses, onOpenVerifier }) {
                 </span>
               </div>
               <p className="text-xs text-slate-400">High-yield cheat sheets, diagrams & formulas.</p>
-            </div>
+            </button>
 
             {/* Pillar 3: Practice Sheets (PAID) */}
-            <div className="bg-slate-900/80 backdrop-blur border border-amber-500/40 rounded-xl p-3.5 text-left relative overflow-hidden group hover:border-amber-500/70 transition-all ring-1 ring-amber-500/20">
-              <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center mb-2">
+            <button
+              onClick={() => onExploreCourses && onExploreCourses('sheets')}
+              className="bg-slate-900/80 backdrop-blur border border-amber-500/40 rounded-xl p-3.5 text-left relative overflow-hidden group hover:border-amber-500/80 hover:bg-slate-900 transition-all hover:scale-105 ring-1 ring-amber-500/20 cursor-pointer shadow-md"
+            >
+              <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <Sparkles className="w-4 h-4" />
               </div>
               <div className="flex items-center gap-1.5 mb-1">
@@ -85,11 +94,14 @@ export default function Hero({ onExploreCourses, onOpenVerifier }) {
                 </span>
               </div>
               <p className="text-xs text-slate-400">100+ FAANG questions with C++, Java & Python code.</p>
-            </div>
+            </button>
 
             {/* Pillar 4: Certificates */}
-            <div className="bg-slate-900/80 backdrop-blur border border-indigo-500/30 rounded-xl p-3.5 text-left relative overflow-hidden group hover:border-indigo-500/60 transition-all">
-              <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center mb-2">
+            <button
+              onClick={onOpenVerifier}
+              className="bg-slate-900/80 backdrop-blur border border-indigo-500/30 rounded-xl p-3.5 text-left relative overflow-hidden group hover:border-indigo-500/80 hover:bg-slate-900 transition-all hover:scale-105 cursor-pointer shadow-md"
+            >
+              <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
                 <Award className="w-4 h-4" />
               </div>
               <div className="flex items-center gap-1.5 mb-1">
@@ -99,7 +111,7 @@ export default function Hero({ onExploreCourses, onOpenVerifier }) {
                 </span>
               </div>
               <p className="text-xs text-slate-400">Official certificate with unique QR verification ID.</p>
-            </div>
+            </button>
 
           </div>
 

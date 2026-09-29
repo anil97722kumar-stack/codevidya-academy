@@ -54,6 +54,7 @@ app.get('/api/health', (req, res) => {
 });
 
 import databaseRoutes from './routes/databaseRoutes.js';
+import compilerRoutes from './routes/compilerRoutes.js';
 
 // 3. API Routes
 app.use('/api/auth', authRoutes);
@@ -61,6 +62,7 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/certificates', certificateRoutes);
 app.use('/api/courses', coursesRoutes);
 app.use('/api/database', databaseRoutes);
+app.use('/api/compiler', compilerRoutes);
 
 
 // 4. Serve Frontend SPA in Production / Hosted Mode

@@ -118,11 +118,6 @@ export default function StudentAuthBarrier({ onAuthSuccess, onOpenVerifier }) {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-emerald-400">
-              <Database className="w-3.5 h-3.5" />
-              <span>MySQL 8.0 Active (codevidya_db)</span>
-            </div>
-
             {onOpenVerifier && (
               <button
                 onClick={onOpenVerifier}
@@ -290,20 +285,7 @@ export default function StudentAuthBarrier({ onAuthSuccess, onOpenVerifier }) {
             </button>
           </form>
 
-          {/* Quick Demo Student Fill Button */}
-          <div className="mt-5 pt-4 border-t border-slate-800 text-center">
-            <button
-              type="button"
-              onClick={fillDemoStudent}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-medium transition-colors"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Click to 1-Click Auto-Fill Demo Student</span>
-            </button>
-            <p className="text-[11px] text-slate-500 mt-1.5 font-mono">
-              Demo: aditya.sharma@gmail.com | 9876543210 | password123
-            </p>
-          </div>
+
 
           {/* Feature Highlights Footer */}
           <div className="mt-6 pt-4 border-t border-slate-800/80 grid grid-cols-3 gap-2 text-center text-[10px] text-slate-400">

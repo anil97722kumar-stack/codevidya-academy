@@ -23,7 +23,7 @@ export default function Navbar({
   earnedCertificates, 
   onOpenVerifier, 
   onOpenDashboard, 
-  onOpenDatabase,
+  onFilterMode,
   onOpenChat,
   currentUser, 
   onSignOut,
@@ -95,21 +95,17 @@ export default function Navbar({
             </button>
 
             <button
-              onClick={() => {
-                setActiveView('home');
-              }}
-              className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors flex items-center gap-1.5"
+              onClick={() => onFilterMode ? onFilterMode('notes') : setActiveView('home')}
+              className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors flex items-center gap-1.5 cursor-pointer"
             >
-              <FileText className="w-3.5 h-3.5 text-emerald-400" />
+              <FileText className="w-3.5 h-3.5 text-cyan-400" />
               Free Notes
-              <span className="px-1.5 py-0.2 bg-emerald-500/20 text-emerald-300 text-[10px] rounded-full font-semibold">FREE</span>
+              <span className="px-1.5 py-0.2 bg-cyan-500/20 text-cyan-300 text-[10px] rounded-full font-semibold">FREE</span>
             </button>
 
             <button
-              onClick={() => {
-                setActiveView('home');
-              }}
-              className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors flex items-center gap-1.5"
+              onClick={() => onFilterMode ? onFilterMode('sheets') : setActiveView('home')}
+              className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors flex items-center gap-1.5 cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               Practice Sheets
@@ -118,22 +114,11 @@ export default function Navbar({
 
             <button
               onClick={onOpenVerifier}
-              className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors flex items-center gap-1.5"
+              className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors flex items-center gap-1.5 cursor-pointer"
             >
               <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
               Verify Certificate
             </button>
-
-            {onOpenDatabase && (
-              <button
-                onClick={onOpenDatabase}
-                className="px-3 py-1.5 rounded-lg text-sm font-medium text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 border border-emerald-500/20 transition-colors flex items-center gap-1.5"
-                title="Inspect MySQL 8.0 Tables"
-              >
-                <Database className="w-3.5 h-3.5" />
-                MySQL DB
-              </button>
-            )}
           </nav>
 
           {/* Right Action buttons: strictly Chat icon and Sun icon at top */}
