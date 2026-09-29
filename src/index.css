@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+}
+
+/* -------------------------------------------
+   DARK THEME (Default)
+------------------------------------------- */
+html.dark, html:not(.light) {
+  color-scheme: dark;
+}
+html.dark body, html:not(.light) body {
+  background-color: #0b0f19;
+  color: #e2e8f0;
+}
+
+/* -------------------------------------------
+   LIGHT THEME (Crisp & Clean)
+------------------------------------------- */
+html.light {
+  color-scheme: light;
+}
+html.light body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Header & Nav in Light Mode */
+html.light header {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+/* Hero Section in Light Mode */
+html.light .bg-gradient-to-b.from-slate-950 {
+  background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 50%, #f8fafc 100%) !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+/* General Dark background classes converted to Light cards */
+html.light .bg-slate-950 {
+  background-color: #f1f5f9 !important;
+}
+html.light .bg-slate-900,
+html.light .bg-slate-900\/90,
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900\/60 {
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+html.light .bg-slate-950\/80,
+html.light .bg-slate-950\/60,
+html.light .bg-slate-950\/40 {
+  background-color: #f8fafc !important;
+}
+
+/* Borders in Light Mode */
+html.light .border-slate-800,
+html.light .border-slate-800\/80,
+html.light .border-slate-800\/60,
+html.light .border-slate-700,
+html.light .border-slate-700\/80 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Typography in Light Mode */
+html.light .text-white {
+  color: #0f172a !important;
+}
+html.light .text-slate-100 {
+  color: #0f172a !important;
+}
+html.light .text-slate-200 {
+  color: #1e293b !important;
+}
+html.light .text-slate-300 {
+  color: #334155 !important;
+}
+html.light .text-slate-400 {
+  color: #64748b !important;
+}
+html.light .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* Inputs in Light Mode */
+html.light input, 
+html.light select {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html.light input::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Footer in Light Mode */
+html.light footer {
+  background-color: #f1f5f9 !important;
+  border-top-color: #e2e8f0 !important;
+}
+html.light footer .bg-slate-950\/60 {
+  background-color: #ffffff !important;
+}
+
+/* Developer Code blocks remain dark for highest readability */
+html.light pre, 
+html.light textarea,
+html.light .bg-slate-950 pre {
+  background-color: #0f172a !important;
+  color: #38bdf8 !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+html.dark ::-webkit-scrollbar-track, html:not(.light) ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+html.dark ::-webkit-scrollbar-thumb, html:not(.light) ::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
